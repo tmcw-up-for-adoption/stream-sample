@@ -1,0 +1,28 @@
+{
+  "name": "stream-sample",
+  "version": "1.0.0",
+  "description": "sample streams using reservoir sampling",
+  "main": "index.js",
+  "scripts": {
+    "test": "prova test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "keywords": [
+    "stream",
+    "sample",
+    "statistics",
+    "reservoir"
+  ],
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "devDependencies": {
+    "dox": "^0.6.1",
+    "doxme": "^1.8.2",
+    "prova": "^2.1.1",
+    "through": "^2.3.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tmcw/stream-sample.git"
+  }
+}
