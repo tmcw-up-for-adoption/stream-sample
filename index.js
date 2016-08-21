@@ -1,4 +1,4 @@
-var through = require('through');
+var through2 = require('through2');
 
 /**
  * @alias stream-sample
@@ -35,7 +35,7 @@ var through = require('through');
 function streamSample(sampleCount) {
     var sample = new Array(sampleCount),
         i = 0;
-    return through(function write(data) {
+    return through2.obj(function (data, enc, callback) {
         // Fill the initial sample.
         if (i < sampleCount) {
             sample[i] = data;
@@ -49,6 +49,7 @@ function streamSample(sampleCount) {
         }
         i++;
         this.push(sample);
+        callback();
     });
 }
 
