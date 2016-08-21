@@ -1,4 +1,4 @@
-var test = require('prova'),
+var test = require('tape'),
     streamSample = require('./');
 
 test('stream-sample [1,2,3]', function(t) {
@@ -8,9 +8,9 @@ test('stream-sample [1,2,3]', function(t) {
     sampler.on('data', function(sample) {
         t.equal(sample.length, 3);
         t.deepEqual(sample, [1, 2, 3]);
-        t.end();
     });
     sampler.write(3);
+    t.end();
 });
 
 test('stream-sample lots', function(t) {
@@ -24,8 +24,8 @@ test('stream-sample lots', function(t) {
             t.ok(s > 0);
             t.ok(s < 50);
         });
-        t.end();
     });
     sampler.write(Math.random() * 50);
     sampler.end();
+    t.end();
 });
