@@ -32,9 +32,20 @@ var through2 = require('through2');
  *
  * for (var i = 0; i < 100; i++) sampler.push(Math.random());
  */
-function streamSample(sampleCount) {
-    var sample = new Array(sampleCount),
-        i = 0;
+function streamSample(sampleCountOrArray, lastOneOnly) {
+    var sample = [],
+        sampleCount = 0;
+    if (Array.isArray(sampleCountOrArray)) {
+      sample = sampleCountOrArray;
+      sampleCount = sample.length;
+      if (lastOneOnly === undefined) {
+        lastOneOnly = true;
+      }
+    } else {
+      sampleCount = sampleCountOrArray;
+      sample = new Array(sampleCount);
+    }
+    var i = 0;
     return through2.obj(function (data, enc, callback) {
         // Fill the initial sample.
         if (i < sampleCount) {
@@ -48,8 +59,15 @@ function streamSample(sampleCount) {
             }
         }
         i++;
-        this.push(sample);
+        if (!lastOneOnly) {
+          this.push(sample);
+        }
         callback();
+    }, function flush(cb) {
+      if (lastOneOnly) {
+        this.push(sample);
+      }
+      cb();
     });
 }
 
