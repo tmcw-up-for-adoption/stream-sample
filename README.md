@@ -1,5 +1,7 @@
 # stream-sample
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tmcw/stream-sample.svg)](https://greenkeeper.io/)
+
 [![build status](https://secure.travis-ci.org/tmcw/stream-sample.png)](http://travis-ci.org/tmcw/stream-sample)
 
 sample streams using reservoir sampling
